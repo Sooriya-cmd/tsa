@@ -1,0 +1,21 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+data = pd.read_csv("C:\\Users\\Admin\\Documents\\data_sales.csv")
+data["date"] = pd.to_datetime(data["date"], format="%m-%d-%Y")
+data.set_index("date", inplace=True)
+plt.figure(figsize=(10, 5))
+plt.plot(data["revenue"], marker='o')
+plt.title("Time Series Plot")
+plt.xlabel("Date")
+plt.ylabel("Revenue")
+plt.grid(True)
+plt.show()
+fig, ax = plt.subplots(figsize=(8,4))
+plot_acf(data["revenue"], lags=10, ax=ax)
+ax.set_title("Autocorrelation Function (ACF)")
+plt.show()
+fig, ax = plt.subplots(figsize=(8,4))
+plot_pacf(data["revenue"], lags=10, method="ywm", ax=ax)
+ax.set_title("Partial Autocorrelation Function (PACF)")
+plt.show()
