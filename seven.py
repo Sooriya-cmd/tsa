@@ -49,6 +49,7 @@ for col in test.columns:
     rmse = np.sqrt(
         mean_squared_error(test[col], forecast[col])
     )
+    
     print("\n", col)
     print("RMSE:", rmse)
     plt.figure(figsize=(8, 4))
